@@ -49,6 +49,12 @@ app.post('/tweets', (req, res)=>{
     res.send("OK")
 })
 
+app.get('/tweets/:USERNAME', (req, res) => {
+    const name = req.params.USERNAME
+    const findTweets = tweets.filter(userdata => userdata.username == name)
+    res.send(findTweets)
+})
+
 app.get('/tweets', (req, res) =>{
     res.send(tweets)
 })
