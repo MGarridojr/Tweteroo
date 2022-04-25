@@ -45,7 +45,7 @@ app.post('/tweets', (req, res)=>{
         avatar: findUser.avatar,
         tweet: data.tweet
     }
-    tweets.push(tweetData)
+    tweets.unshift(tweetData)
     res.send("OK")
 })
 
