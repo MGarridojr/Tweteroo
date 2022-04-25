@@ -20,7 +20,12 @@ function validateUser(data){
 }
 
 app.post('/sign-up', (req, res)=>{
-    const user = req.body
+    const { username, avatar } = req.body
+    const user = {
+        ID: users.length +1,
+        username,
+        avatar
+    }
     validateUser(user)
     if(error.length == 0){
         users.push(user)
@@ -33,8 +38,14 @@ app.post('/sign-up', (req, res)=>{
 })
 
 app.post('/tweets', (req, res)=>{
-    const tweet  = req.body
-    tweets.push(tweet)
+    const data = req.body
+    const findUser = users.find(userData=> userData.username == data.username)
+    const tweetData = {
+        username: data.username,
+        avatar: findUser.avatar,
+        tweet: data.tweet
+    }
+    tweets.push(tweetData)
     res.send("OK")
 })
 
